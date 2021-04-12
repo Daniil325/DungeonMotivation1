@@ -31,8 +31,10 @@ class MainActivity2 : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         mSensorManager.registerListener(object : SensorEventListener {
-            val currentTime: Long = System.currentTimeMillis()
+            var currentTime: Long = System.currentTimeMillis()
+            var currentTime2: Long = System.currentTimeMillis()
             var nums = Koordinat()
+            var time1: Long = 0
             override fun onSensorChanged(p0: SensorEvent?) {
                 val sensorName: String = p0?.sensor!!.getName();
                 Log.d(
@@ -53,19 +55,30 @@ class MainActivity2 : AppCompatActivity() {
                 nums.z = p0.values[2].toDouble()
 
                 val listView: ListView = findViewById<ListView>(R.id.listView)
+                val listView2: ListView = findViewById<ListView>(R.id.listView2)
+                val listView3: ListView = findViewById<ListView>(R.id.listView3)
                 val numbers = arrayOf(
                     nums.x, nums.y, nums.z
                 )
+
+                time1 = currentTime
+
+                var curtime = arrayOf(
+                    time1
+                )
+
                 val adapter = ArrayAdapter<Double>(
                     this@MainActivity2,
                     android.R.layout.simple_list_item_1, numbers
                 )
 
+                val adapter2 = ArrayAdapter<Long>(
+                    this@MainActivity2,
+                    android.R.layout.simple_list_item_1, curtime
+                )
+
                 listView.adapter = adapter
-
-                val textView4: TextView = findViewById<TextView>(R.id.textView4)
-                textView4.text = currentTime.toString()
-
+                listView2.adapter = adapter2
             }
 
             override fun onAccuracyChanged(p0: Sensor?, p1: Int) {

@@ -18,7 +18,8 @@ class MainActivity : AppCompatActivity() {
                 findViewById<EditText>(R.id.editTextTextPassword).text.toString() == pass){
                 val intent = Intent(this, MainActivity2::class.java)
                 startActivity(intent)
-            }else{
+            }
+            else{
                 findViewById<EditText>(R.id.editTextTextPersonName).error = "ошибка стоп"
             }
         }
