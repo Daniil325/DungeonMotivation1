@@ -1,23 +1,21 @@
 package com.example.dungeonmotivation
-fun main(){
-    var game = Game()
-    var choice = readLine()!!.toString()
-    var s = game.choose_motivation(choice)
-    var t = s.entries
+
+fun addition_isCorrect() {
+    val game = Game()
+    val choice = (readLine() ?: return).toString()
+    val s = game.choose_motivation(choice)
+    val t = s.entries
     for ((i, j) in t)
-        println("Вы выбрали $i \n  Совет: $j!")
+        print("Вы выбрали $i \n Совет: $j!")
 }
 
-class Game{
+class Game {
     fun choose_motivation(choose: String): Map<String?, String?> {
         var motivation: String? = ""
         var advice: String? = ""
-        var mp = mapOf(
-            "Сдать ЕГЭ" to "СДАЙ ЕГЭ",
-            "Cаморазвитие" to "САМОРАЗВИВАЙСЯ"
-        )
-        for(m in mp){
-            if(choose == m.key){
+        val mp = mapOf("Сдать ЕГЭ" to "СДАЙ ЕГЭ", "Свмоазвитие" to "САМОРАЗВИВАЙСЯ")
+        for ((key) in mp) {
+            if (choose == key) {
                 motivation = choose
             }
         }
@@ -25,7 +23,7 @@ class Game{
             "Сдать ЕГЭ" -> {
                 advice = mp.getValue(choose)
             }
-            "Cаморазвитие" -> {
+            "Саморазвитие" -> {
                 advice = mp.getValue(choose)
             }
         }
